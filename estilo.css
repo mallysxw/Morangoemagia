@@ -4,3 +4,33 @@ background-color: rgb(255, 196, 196);
 
 }
 
+
+img {
+    width: 300px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+nav {
+    background-color: #ffb6c1;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+     font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: yellow;
+}
+
+
+
+
+
