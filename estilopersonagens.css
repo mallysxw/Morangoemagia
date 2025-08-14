@@ -1,0 +1,52 @@
+body {
+    font-family: 'Fredoka One', cursive;
+    text-align: center;
+    background-color: #fce4ec;
+    padding: 20px;
+    margin: 0;
+}
+
+nav {
+    background-color: #ff80ab;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: yellow;
+}
+
+.personagens-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.personagem {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.personagem h2 {
+    color: #e91e63;
+}
+
+.personagem-img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.personagem p {
+    font-size: 16px;
+}
