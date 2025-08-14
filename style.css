@@ -1,0 +1,43 @@
+body {
+    font-family: 'Fredoka One', cursive;
+    text-align: center;
+    background-color: #fbb2b3;
+    padding: 20px;
+}
+
+.quiz-container {
+    background-color: #fadadc;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 0 10px rgb(233, 3, 76);
+}
+
+button {
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #ff798d;
+}
+
+.opcao {
+    display: block;
+    background-color: #f93865;
+    color: rgb(252, 213, 213);
+    border: none;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
