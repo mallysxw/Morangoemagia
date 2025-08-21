@@ -1,12 +1,12 @@
 body{
 
-background-color: rgb(255, 196, 196);
+background-color:#fadbe0
 
 }
 
 
 img {
-    width: 300px;
+    width: 500px;
     height: auto;
     display: block;
     margin: auto;
@@ -27,7 +27,7 @@ nav a {
 }
 
 nav a:hover {
-    color: yellow;
+    color: rgb(246, 118, 169);
 }
 
 

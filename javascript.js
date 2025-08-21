@@ -1,76 +1,62 @@
-const perguntas = [
-    {
-        pergunta: "Qual sua cor favorita?",
-        opcoes: [
-            {texto: "Vermelho", personagem: "Moranguinho"},
-            {texto: "Rosa", personagem: "Cerejinha"},
-            {texto: "Roxo", personagem: "Ameixinha"},
-            {texto: "Laranja", personagem: "Laranjinha"}
-        ]
-    },
-    {
-        pergunta: "O que você mais gosta de fazer?",
-        opcoes: [
-            {texto: "Ajudar os amigos", personagem: "Moranguinho"},
-            {texto: "Se divertir e dançar", personagem: "Cerejinha"},
-            {texto: "Inventar coisas novas", personagem: "Ameixinha"},
-            {texto: "Cozinhar e criar receitas", personagem: "Laranjinha"}
-        ]
-    },
-    {
-        pergunta: "Qual seu estilo de roupa?",
-        opcoes: [
-            {texto: "Vestido fofo e vermelho", personagem: "Moranguinho"},
-            {texto: "Roupas coloridas e animadas", personagem: "Cerejinha"},
-            {texto: "Roupas criativas e diferentes", personagem: "Ameixinha"},
-            {texto: "Roupas confortáveis e laranjas", personagem: "Laranjinha"}
-        ]
-    }
+const board = document.getElementById("game-board");
+
+const personagens = [
+  "moranguinho",
+  "limãozinho",
+  "cerejinha",
+  "laranjinha",
+  "amora linda"
 ];
 
-let perguntaAtual = 0;
-let pontuacao = {
-    Moranguinho: 0,
-    Cerejinha: 0,
-    Ameixinha: 0,
-    Laranjinha: 0
-};
+// duplicar para formar pares
+let cards = [...personagens, ...personagens];
 
-const perguntaEl = document.getElementById("pergunta");
-const opcoesEl = document.getElementById("opcoes");
-const resultadoEl = document.getElementById("resultado");
+// embaralhar
+cards.sort(() => 0.5 - Math.random());
 
-function mostrarPergunta() {
-    const atual = perguntas[perguntaAtual];
-    perguntaEl.textContent = atual.pergunta;
-    opcoesEl.innerHTML = "";
+let firstCard = null;
+let lockBoard = false;
 
-    atual.opcoes.forEach(opcao => {
-        const botao = document.createElement("button");
-        botao.textContent = opcao.texto;
-        botao.classList.add("opcao");
-        botao.onclick = () => {
-            pontuacao[opcao.personagem]++;
-            proximo();
-        };
-        opcoesEl.appendChild(botao);
-    });
-}
+// criar cartas
+cards.forEach(personagem => {
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.innerHTML = `
+    <div class="card-inner">
+      <div class="card-front">
+        <img src="imagens/${personagem}.png" alt="${personagem}" width="100" height="100">
+      </div>
+      <div class="card-back">
+        <img src="imagens/verso.png" alt="verso" width="100" height="100">
+      </div>
+    </div>
+  `;
 
-function proximo() {
-    perguntaAtual++;
-    if(perguntaAtual < perguntas.length) {
-        mostrarPergunta();
+  card.addEventListener("click", () => flipCard(card, personagem));
+  board.appendChild(card);
+});
+
+function flipCard(card, personagem) {
+  if (lockBoard) return;
+  if (card.classList.contains("flipped")) return;
+
+  card.classList.add("flipped");
+
+  if (!firstCard) {
+    firstCard = { card, personagem };
+  } else {
+    if (firstCard.personagem === personagem) {
+      // achou par 🎉
+      firstCard = null;
     } else {
-        mostrarResultado();
+      // errou 😅
+      lockBoard = true;
+      setTimeout(() => {
+        card.classList.remove("flipped");
+        firstCard.card.classList.remove("flipped");
+        firstCard = null;
+        lockBoard = false;
+      }, 1000);
     }
+  }
 }
-
-function mostrarResultado() {
-    const personagem = Object.keys(pontuacao).reduce((a, b) => pontuacao[a] > pontuacao[b] ? a : b);
-    quiz.style.display = "none";
-    document.getElementById("proximo").style.display = "none";
-    resultadoEl.innerHTML = `<h2>Você seria: ${personagem}!</h2>`;
-}
-
-mostrarPergunta();
